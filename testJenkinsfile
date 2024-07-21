@@ -3,7 +3,8 @@ pipeline{
 
     stages{
         stage("install"){
-            agent {docker{image "customnodejs"}
+            agent {docker{image "node:14.18.0"
+                args '-u root:sudo'}
     }
             steps{
                 sh "npm cache clean"
