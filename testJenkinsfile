@@ -2,7 +2,6 @@ pipeline{
     agent {docker{image "node:14.18.0"
                 args '-u root:sudo'}
     }
-
     stages{
         stage("install"){
             
@@ -15,6 +14,12 @@ pipeline{
         stage("package"){
             steps{
                 sh "npm pack"
+            }
+        }
+        stage("upload artifact"){
+            stes{
+                sh "curl -uadmin:AP5Wqb4z8e2FpTCsrqdrpHBVngW \
+                -T *.tgz "http://52.23.169.217:8081/artifactory/utc-nodejs/utc-app${BUILD_ID}.tgz""
             }
         }
     }
